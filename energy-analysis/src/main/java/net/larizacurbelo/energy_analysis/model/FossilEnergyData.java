@@ -1,13 +1,19 @@
 package net.larizacurbelo.energy_analysis.model;
 
+/**
+ * Abstract class for fossil energy data.
+ * Stores specific attributes and behaviors for fossil energy sources,
+ * including CO₂ emission factors and methods to calculate total emissions.
+ */
+
 public abstract class  FossilEnergyData extends EnergyData {
 	
-	private  double co2EmissionFactor; // Emission factor per unit of energy produced
+	private  double co2EmissionFactor; // CO2 Emission factor per unit of energy produced
 	
 	
-	protected FossilEnergyData(EnergyDataBuilder<?> builder, double co2Emission) {
+	protected FossilEnergyData(FossilEnergyDataBuilder<?> builder) {
 		super(builder);
-		this.co2EmissionFactor = co2Emission;
+		this.co2EmissionFactor = builder.co2EmissionFactor;
 	}
 	
 	public double getCo2EmissionFactor () {
@@ -22,25 +28,28 @@ public abstract class  FossilEnergyData extends EnergyData {
 	 * @return The total CO₂ emissions.
 	 */
 	public abstract double calculateTotalEmissions(int year);
+	/**
+	 * Builder for creating instances of FossilEnergyData subclasses.
+	 * Ensures proper initialization and validation of attributes like
+	 * CO₂ emission factors.
+	 *
+	 * @param <T> The type of the concrete builder (for method chaining).
+	 */
 	
-	public static abstract class FossilEnergyDataBuilder <T extends FossilEnergyDataBuilder<T>>
-								 extends EnergyDataBuilder{
-		private double co2EmissionFactor;
-		
-		protected FossilEnergyDataBuilder self() {
-			return this;
-		}
-		
-		public  FossilEnergyDataBuilder co2EmissionFactor(double co2EmissionFactor) {
-	            this.co2EmissionFactor = co2EmissionFactor;
-	            return self();
+	public abstract static  class FossilEnergyDataBuilder <T extends FossilEnergyDataBuilder<T>>
+								 extends EnergyDataBuilder <T>{
+		private double co2EmissionFactor = 1.0;
+				
+		public T co2EmissionFactor(double co2EmissionFactor) {
+			if( co2EmissionFactor <= 0) {
+				throw new IllegalArgumentException("CO2 emission factor must be greater than zero.");
+			}
+	           this.co2EmissionFactor = co2EmissionFactor;
+	           return self();
 	            
 		}
-		
-		
 		@Override
-		public abstract FossilEnergyData build();
+    	public abstract FossilEnergyData build();
+		
 	}
-
-
 }

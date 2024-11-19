@@ -153,6 +153,28 @@ public abstract class EnergyData {
 			return self();
 		}
 		
+		public T energyProduction(Map<Integer, Double> energyProduction) {
+			this.energyProduction = energyProduction;
+			return self();
+		}
+		
+		public T energyConsumption(Map<Integer, Double> energyConsumption) {
+			this.energyConsumption = energyConsumption;
+			return self();
+		}
+		
+		public T importedEnergy(Map<Integer, Map<EnergySource, Double>> importedEnergy) {
+			this.importedEnergy = importedEnergy;
+			return self();	
+		}
+		public T exportedEnergy(Map<Integer, Map<EnergySource, Double>> exportedEnergy) {
+			this.exportedEnergy = exportedEnergy;
+			return self();
+		}
+		public T energyUsage(Map<Integer, Map<EnergyUsageType, Optional<Double>>> energyUsage) {
+			this.energyUsage = energyUsage;
+			return self();
+		}
 		// Other builder methods for setting attributes...
 		
 		protected abstract T self();
