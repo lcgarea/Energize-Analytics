@@ -1,0 +1,1 @@
+tagSearchIndex = [{"l":"Solar Photovoltaic:","h":"Enum-Klasse net.larizacurbelo.energy_analysis.model.SIEC","d":"Abschnitt","u":"net/larizacurbelo/energy_analysis/model/SIEC.html#solar-photovoltaic--heading"}];updateSearchResults();
