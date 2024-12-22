@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"Alle Klassen und Schnittstellen","u":"allclasses-index.html"},{"p":"net.larizacurbelo.energy_analysis.model","l":"SIEC"}];updateSearchResults();
